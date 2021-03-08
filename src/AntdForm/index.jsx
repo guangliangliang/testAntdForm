@@ -15,8 +15,6 @@
 import { Form } from "antd";
 import React, { useImperativeHandle, forwardRef, useEffect } from "react";
 import SingleFormItem from "./singleFormItem";
-import "./index.less";
-import PropTypes from "prop-types";
 import { is } from "../utils";
 
 const Index = (
@@ -70,6 +68,7 @@ const Index = (
         }
       });
     }
+    console.log(values);
     submit(values);
   };
 
@@ -97,7 +96,14 @@ const Index = (
 
   const { form: formObj, items } = formData;
   const FromItems = items.map((singleItem) => {
-    const { item, type, mixin = {}, value, config = {} } = singleItem;
+    const {
+      item,
+      type,
+      mixin = {},
+      value,
+      config = {},
+      tooltipMixin = {}
+    } = singleItem;
     const { name } = item;
     const { Br = false } = config;
     const BrDom = Br ? <br /> : null;
@@ -109,9 +115,10 @@ const Index = (
             type={type}
             text={value}
             config={config}
+            TooltipMixin={tooltipMixin}
             manualSubmit={manualSubmit}
             buttonClick={(text, obj) => {
-              buttonClick(text, obj);
+              buttonClick && buttonClick(text, obj);
             }}
             uploadButtonClick={uploadButtonClick}
             onChange={(value) => {

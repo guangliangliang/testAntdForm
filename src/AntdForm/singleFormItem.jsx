@@ -73,7 +73,7 @@ class SingleFormItem extends Component {
       mixin = {},
       text,
       manualSubmit,
-      TooltipMixin
+      tooltipMixin
     } = this.props;
     let { onEventChange: onChange } = this;
     if (
@@ -193,7 +193,7 @@ class SingleFormItem extends Component {
     };
     let itemTypeObjs = {
       Text: (
-        <Tooltip placement="topRight" {...TooltipMixin} title={text}>
+        <Tooltip placement="topRight" {...tooltipMixin} title={text}>
           <span>{text}</span>
         </Tooltip>
       ),
@@ -279,14 +279,27 @@ class SingleFormItem extends Component {
       Radio: getRadio,
       Transfer: <Transfer {...mixinObj} />,
       TreeSelect: () => {
+        const {
+          idKey = "key",
+          titleKey = "title",
+          childrenKey = "children",
+          treeData = []
+        } = mixinObj;
+
+        const renderTreeNodes = (data) =>
+          data.map((item) => {
+            if (item[childrenKey]) {
+              return (
+                <TreeNode key={item[idKey]} title={item[titleKey]}>
+                  {renderTreeNodes(item[childrenKey])}
+                </TreeNode>
+              );
+            }
+            return <TreeNode key={item[idKey]} title={item[titleKey]} />;
+          });
         return (
-          <TreeSelect {...mixinObj}>
-            <TreeNode value="parent 1" title="parent 1" key="0-1">
-              <TreeNode value="parent 1-0" title="parent 1-0" key="0-1-1">
-                <TreeNode value="leaf1" title="my leaf" key="random" />
-                <TreeNode value="leaf2" title="your leaf" key="random1" />
-              </TreeNode>
-            </TreeNode>
+          <TreeSelect treeDefaultExpandAll showSearch {...mixinObj}>
+            {renderTreeNodes(treeData)}
           </TreeSelect>
         );
       }
