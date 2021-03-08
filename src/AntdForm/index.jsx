@@ -4,14 +4,6 @@
 /* eslint-disable no-console */
 /* eslint-disable no-shadow */
 /* eslint-disable no-unused-vars */
-/*
- * @Description:
- * @Version: 1.0
- * @Autor: unicom
- * @Date: 2021-01-18 16:24:25
- * @LastEditors: unicom
- * @LastEditTime: 2021-02-09 15:36:00
- */
 import { Form } from "antd";
 import React, { useImperativeHandle, forwardRef, useEffect } from "react";
 import SingleFormItem from "./singleFormItem";

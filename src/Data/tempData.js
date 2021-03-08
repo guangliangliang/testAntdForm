@@ -1,3 +1,8 @@
+import moment from "moment";
+const today = moment();
+function disabledDate(current) {
+  return current && current < moment().subtract(1, "days");
+}
 const defaultFormDefaultLayout = {
   labelCol: {
     xs: { span: 24 },
@@ -42,141 +47,351 @@ const tableFormData = {
   items: [
     {
       item: {
-        label: "元数据名称",
-        name: "name",
+        label: "Input",
+        name: "Input",
         rules: [{ required: true, message: "请输入您的元数据名称" }]
       },
       type: "Input",
+      mixin: {
+        placeholder: "请输入",
+        defaultValue: "Input"
+      }
+    },
+    {
+      item: {
+        label: "Text",
+        name: "Text"
+      },
+      type: "Text",
+      value: "showText",
+      tooltipMixin: {
+        placement: "bottomRight"
+      }
+    },
+    {
+      item: {
+        label: "InputPassword",
+        name: "InputPassword",
+        rules: [{ required: true, message: "不能为空" }]
+      },
+      type: "InputPassword",
       mixin: {
         placeholder: "请输入"
       }
     },
     {
       item: {
-        label: "存储对象",
-        name: "storeObjectId"
+        label: "InputNumber",
+        name: "InputNumber"
       },
-      type: "Select",
+      type: "InputNumber",
       mixin: {
-        placeholder: "请选择",
-        options: [],
-        next: "dsDatastoreObjectVoList"
+        placeholder: "请输入"
       }
     },
     {
       item: {
-        label: "元数据来源",
-        name: "datasourceId"
-      },
-      type: "Select",
-      mixin: {
-        placeholder: "请选择",
-        options: [
-          { label: "气象局", value: "气象局" },
-          { label: "-", value: "-" }
-        ]
-      }
-    },
-    /*  {
-      item:{
-        label:"存储时间",
-        name:"createTime",
-      },
-      type:'Select',
-      mixin:{
-        placeholder:"请选择",
-        options:[],
-      }
-    }, */
-    {
-      item: {
-        label: "元数据标签",
-        name: "tagList",
-        ...formNextLayout
-      },
-      type: "Select",
-      mixin: {
-        placeholder: "请选择",
-        mode: "multiple",
-        options: []
-      }
-    },
-    {
-      item: {
-        label: "类型",
-        name: "type"
-      },
-      type: "Select",
-      mixin: {
-        placeholder: "请选择",
-        options: [
-          { label: "全量", value: "0" },
-          { label: "增量", value: "1" }
-        ]
-      }
-    },
-    {
-      item: {
-        label: "统计周期",
-        name: "statPeriod"
-      },
-      type: "Select",
-      mixin: {
-        placeholder: "请选择",
-        options: []
-      }
-    },
-    {
-      item: {
-        label: "元数据描述",
-        name: "description",
-        ...formNextLayout
+        label: "TextArea",
+        name: "TextArea"
       },
       type: "TextArea",
       mixin: {
-        placeholder: "请输入项目信息描述，字数在100字以内"
+        placeholder: "请输入",
+        rows: 4
       }
     },
     {
       item: {
-        name: "download",
+        label: "Slider",
+        name: "Slider"
+      },
+      type: "Slider",
+      mixin: {
+        min: 1,
+        max: 20,
+        value: 10
+      }
+    },
+    {
+      item: {
+        label: "Switch",
+        name: "Switch"
+      },
+      type: "Switch",
+      mixin: {
+        defaultChecked: false,
+        checkedChildren: "开启"
+      }
+    },
+    {
+      item: {
+        label: "Rate",
+        name: "Rate"
+      },
+      type: "Rate",
+      mixin: {
+        defaultValue: 2.5
+      }
+    },
+    {
+      item: {
+        label: "Tag",
+        name: "Tag"
+      },
+      type: "Tag",
+      value: [{ name: "tag1" }, { name: "tag2" }]
+    },
+    {
+      item: {
+        label: "Cascader",
+        name: "Cascader"
+      },
+      type: "Cascader",
+      mixin: {
+        options: [
+          {
+            value: "zhejiang",
+            label: "Zhejiang",
+            children: [
+              {
+                value: "hangzhou",
+                label: "Hangzhou",
+                children: [
+                  {
+                    value: "xihu",
+                    label: "West Lake"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      item: {
+        label: "DatePicker",
+        name: "DatePicker"
+      },
+      type: "DatePicker",
+      mixin: {
+        defaultValue: moment(today),
+        disabledDate: disabledDate
+      }
+    },
+    {
+      item: {
+        label: "MonthPicker",
+        name: "MonthPicker"
+      },
+      type: "MonthPicker",
+      mixin: {
+        defaultValue: moment(today)
+      }
+    },
+    {
+      item: {
+        label: "RangePicker",
+        name: "RangePicker"
+      },
+      type: "RangePicker",
+      mixin: {
+        defaultValue: moment(today),
+        disabledDate: disabledDate
+      }
+    },
+    {
+      item: {
+        label: "WeekPicker",
+        name: "WeekPicker"
+      },
+      type: "WeekPicker",
+      mixin: {
+        defaultValue: moment(today)
+      }
+    },
+    {
+      item: {
+        label: "TimePicker",
+        name: "TimePicker"
+      },
+      type: "TimePicker",
+      mixin: {
+        defaultValue: moment(today)
+      }
+    },
+    {
+      item: {
+        label: "Checkbox",
+        name: "Checkbox"
+      },
+      type: "Checkbox",
+      mixin: {
+        options: [
+          { label: "Apple", value: "Apple" },
+          { label: "Pear", value: "Pear" },
+          { label: "Orange", value: "Orange" }
+        ],
+        defaultValue: "Apple"
+      }
+    },
+    {
+      item: {
+        label: "Radio",
+        name: "Radio"
+      },
+      type: "Radio",
+      mixin: {
+        options: [
+          { label: "Apple", value: "Apple" },
+          { label: "Pear", value: "Pear" },
+          { label: "Orange", value: "Orange" }
+        ],
+        defaultValue: "Apple"
+      }
+    },
+    {
+      item: {
+        label: "Transfer",
+        name: "Transfer"
+      },
+      type: "Transfer",
+      mixin: {}
+    },
+    {
+      item: {
+        label: "TreeSelect",
+        name: "TreeSelect"
+      },
+      type: "TreeSelect",
+      mixin: {
+        idKey: "key",
+        titleKey: "title",
+        childrenKey: "children",
+        treeData: [
+          {
+            key: "001",
+            title: "001",
+            children: [
+              {
+                key: "001001",
+                title: "001001"
+              },
+              {
+                key: "001002",
+                title: "001002"
+              }
+            ]
+          },
+          {
+            key: "002",
+            title: "002",
+            children: [
+              {
+                key: "002001",
+                title: "002001"
+              },
+              {
+                key: "002002",
+                title: "002002"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      item: {
+        label: "Select",
+        name: "Select"
+      },
+      type: "Select",
+      mixin: {
+        options: [
+          { label: "Apple", value: "Apple" },
+          { label: "Pear", value: "Pear" },
+          { label: "Orange", value: "Orange" }
+        ],
+        defaultValue: "Apple"
+      }
+    },
+    {
+      item: {
+        label: "SelectNext",
+        name: "SelectNext"
+      },
+      type: "Select",
+      mixin: {
+        options: [
+          {
+            label: "Apple",
+            value: "Apple",
+            childer: [
+              {
+                label: "Apple1",
+                value: "Apple1"
+              },
+              {
+                label: "Apple2",
+                value: "Apple2"
+              }
+            ]
+          },
+          {
+            label: "Pear",
+            value: "Pear",
+            childer: [
+              {
+                label: "Pear1",
+                value: "Pear1"
+              }
+            ]
+          },
+          {
+            label: "Orange",
+            value: "Orange",
+            childer: [
+              {
+                label: "Orange1",
+                value: "Orange1"
+              }
+            ]
+          }
+        ],
+        next: "childer",
+        defaultValue: "Apple1"
+      }
+    },
+    {
+      item: {
+        label: "Upload",
+        name: "Upload"
+      },
+      type: "Upload",
+      value: "上传文件",
+      mixin: {
+        name: "files",
+        action: "action"
+      }
+    },
+    {
+      item: {
+        name: "button",
         ...tailFormItemLayout
       },
       type: "Button",
-      value: "下载模版"
+      value: "自定义按钮"
     },
     {
       item: {
-        name: "upload",
+        label: "",
+        name: "Submit",
         ...tailFormItemLayout
       },
-      type: "Upload",
-      value: "上传元数据schema",
-      config: {
-        Br: true
-      },
+      type: "Submit",
       mixin: {
-        data: {
-          datastoreObjectId: 1
-        },
-        action: "/dmp/api/v1/md/mddataschema/datastoreobject/1/import"
+        label: "提交按钮"
       }
-    },
-    {
-      item: {
-        name: "submit",
-        wrapperCol: {
-          xs: {
-            span: 24,
-            offset: 0
-          },
-          sm: {
-            span: 12,
-            offset: 12
-          }
-        }
-      },
-      type: "Submit"
     }
   ]
 };
